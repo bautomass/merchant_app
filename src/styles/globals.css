@@ -105,3 +105,9 @@ a {
     color-scheme: dark;
   }
 }
+
+button {
+  border: unset;
+  background-color: unset;
+  outline: none;
+}

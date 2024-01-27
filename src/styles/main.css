@@ -1,0 +1,42 @@
+.game-screen {
+  max-width: 500px;
+}
+
+@font-face {
+  font-family: Oswald;
+  src: url(/fonts/Oswald-Medium.woff), url("/fonts/Oswald-Medium.woff");
+}
+.resource-ui {
+  font-family: Oswald;
+  display: flex;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+}
+.resource-ui * {
+  font-size: 1.5rem;
+}
+.resource-ui__icon {
+  height: 100%;
+  width: auto;
+}
+.resource-ui__box {
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  border: 2px solid #ef3e73;
+  width: 100%;
+}
+.resource-ui__count {
+  flex-grow: 1;
+  text-align: center;
+}
+.resource-ui__btn {
+  width: 2rem;
+  max-width: 2rem;
+}
+.resource-ui__btn.sell {
+  border-right: 2px solid #ef3e73;
+}
+.resource-ui__btn.buy {
+  border-left: 2px solid #ef3e73;
+}/*# sourceMappingURL=main.css.map */

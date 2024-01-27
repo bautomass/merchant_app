@@ -1,0 +1,39 @@
+@font-face {
+  font-family: Oswald;
+  src: url(/fonts/Oswald-Medium.woff), url("/fonts/Oswald-Medium.woff");
+}
+
+.resource-ui {
+  font-family: Oswald;
+  display: flex;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+  * {
+    font-size: 1.5rem;
+  }
+  &__icon {
+    height: 100%;
+    width: auto;
+  }
+  &__box {
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    border: 2px solid #ef3e73;
+    width: 100%;
+  }
+  &__count {
+    flex-grow: 1;
+    text-align: center;
+  }
+  &__btn {
+    width: 2rem;
+    max-width: 2rem;
+    &.sell {
+      border-right: 2px solid #ef3e73;
+    }
+    &.buy {
+      border-left: 2px solid #ef3e73;
+    }
+  }
+}
