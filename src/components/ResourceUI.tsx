@@ -1,29 +1,34 @@
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Button,
-} from "@nextui-org/react";
-import PopOverUI from "./PopOverUI";
+import { Resource } from "@/types/resource";
+import ToolTipUI from "./ToolTipUI";
 
 const ResourceUI: React.FC<{
-  icon: string;
-  amount: number;
-  buyPrice: number;
-  sellPrice: number;
-}> = ({ icon, amount, buyPrice, sellPrice }) => {
+  res: Resource;
+  onBuy: Function;
+  onSell: Function;
+}> = ({ res, onBuy, onSell }) => {
   return (
     <div className="resource-ui">
-      <img className="resource-ui__icon" src={icon} />
+      <img className="resource-ui__icon" src={res.icon} />
       <div className="resource-ui__box">
-        <PopOverUI amount={sellPrice}>
-          <button className="resource-ui__btn sell">-</button>
-        </PopOverUI>
-
-        <p className="resource-ui__count">{amount}</p>
-        <PopOverUI amount={buyPrice}>
-          <button className="resource-ui__btn buy">+</button>
-        </PopOverUI>
+        {/* SELL */}
+        <ToolTipUI price={res.price}>
+          <button
+            onClick={() => onSell(res.name)}
+            className="resource-ui__btn sell"
+          >
+            -
+          </button>
+        </ToolTipUI>
+        <p className="resource-ui__count">{res.amount}</p>
+        {/* BUY */}
+        <ToolTipUI price={res.price}>
+          <button
+            onClick={() => onBuy(res.name)}
+            className="resource-ui__btn buy"
+          >
+            +
+          </button>
+        </ToolTipUI>
       </div>
     </div>
   );

@@ -1,3 +1,30 @@
+@font-face {
+  font-family: Oswald;
+  src: url(/fonts/Oswald-Medium.woff), url("/fonts/Oswald-Medium.woff");
+}
+
+* {
+  color: #99d5c9;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #392b58;
+}
+
 .game-screen {
-  max-width: 500px;
+  width: 500px;
+}
+.moves {
+  font-family: Oswald;
+  line-height: 1px;
+  width: 100%;
+  height: 3rem;
+  font-size: 2.7rem;
+  justify-content: center;
+  text-align: center;
 }
