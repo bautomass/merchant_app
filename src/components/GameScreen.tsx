@@ -2,36 +2,42 @@ import ResourceUI from "./ResourceUI";
 import { Resource } from "@/types/resource";
 import { useState } from "react";
 
-const amount = 200;
-const price = 100;
+const amount = 10;
+const goldPrice = 400;
+const silverPrice = 300;
+const woodPrice = 200;
+const stonePrice = 100;
 
 const GameScreen: React.FC<{
   turn: number;
-}> = ({ turn }) => {
+  icon: string;
+}> = ({ turn, icon }) => {
+  const [prevMoves, setMoves] = useState(turn);
+  const [bank, setBank] = useState(100000);
   const [resources, setResources] = useState<{ [key: string]: Resource }>({
     gold: {
       name: "gold",
       icon: "./icons/resource_gold.svg",
       amount: amount,
-      price: price,
+      price: goldPrice,
     },
     silver: {
       name: "silver",
       icon: "./icons/resource_silver.svg",
       amount: amount,
-      price: price,
-    },
-    stone: {
-      name: "stone",
-      icon: "./icons/resource_rock.svg",
-      amount: amount,
-      price: price,
+      price: silverPrice,
     },
     wood: {
       name: "wood",
       icon: "./icons/resource_wood.svg",
       amount: amount,
-      price: price,
+      price: woodPrice,
+    },
+    stone: {
+      name: "stone",
+      icon: "./icons/resource_rock.svg",
+      amount: amount,
+      price: stonePrice,
     },
   });
 
@@ -43,6 +49,8 @@ const GameScreen: React.FC<{
       ...prevState,
       [resName]: newResource,
     }));
+    setBank((prevBank) => prevBank - newResource.price);
+    setMoves((prevMoves) => prevMoves - 1);
   };
 
   const sellResource = (resName: string) => {
@@ -53,12 +61,20 @@ const GameScreen: React.FC<{
       ...prevState,
       [resName]: newResource,
     }));
+    setBank((prevBank) => prevBank + newResource.price);
+    setMoves((prevMoves) => prevMoves - 1);
   };
 
   return (
     <div className="wrapper">
       <div className="game-screen">
-        <div className="moves">Turn: {turn}</div>
+        <div className="game-screen__stats">
+          <div className="game-screen__bank">
+            <img className="game-screen__icon" src={icon} />
+            Bank: ${bank}
+          </div>
+          <div className="game-screen__moves">Turn: {prevMoves}</div>
+        </div>
         {Object.entries(resources).map(([key, res]) => (
           <ResourceUI
             key={key}

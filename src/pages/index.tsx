@@ -9,7 +9,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main>
-        <GameScreen turn={50}></GameScreen>
+        <GameScreen turn={50} icon="./icons/coin.svg"></GameScreen>
       </main>
     </>
   );
