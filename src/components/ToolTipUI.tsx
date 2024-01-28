@@ -6,7 +6,12 @@ const ToolTipUI: React.FC<{
   children: ReactNode;
 }> = ({ price, children }) => {
   return (
-    <Tooltip showArrow={true} placement={"right"} content={price}>
+    <Tooltip
+      showArrow={true}
+      color={"secondary"}
+      placement={"right"}
+      content={price}
+    >
       {children}
     </Tooltip>
   );

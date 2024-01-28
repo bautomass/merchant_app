@@ -12,7 +12,7 @@ const GameScreen: React.FC<{
   turn: number;
   icon: string;
 }> = ({ turn, icon }) => {
-  const [prevMoves, setMoves] = useState(turn);
+  const [prevTurn, setMoves] = useState(turn);
   const [bank, setBank] = useState(100000);
   const [resources, setResources] = useState<{ [key: string]: Resource }>({
     gold: {
@@ -43,26 +43,28 @@ const GameScreen: React.FC<{
 
   const buyResource = (resName: string) => {
     let newResource = { ...resources[resName] };
+    const originalPrice = newResource.price;
     newResource.amount++;
     newResource.price += 50;
     setResources((prevState) => ({
       ...prevState,
       [resName]: newResource,
     }));
-    setBank((prevBank) => prevBank - newResource.price);
+    setBank((prevBank) => prevBank - originalPrice);
     setMoves((prevMoves) => prevMoves - 1);
   };
 
   const sellResource = (resName: string) => {
     let newResource = { ...resources[resName] };
+    const originalPrice = newResource.price;
     newResource.amount--;
     newResource.price -= 50;
     setResources((prevState) => ({
       ...prevState,
       [resName]: newResource,
     }));
-    setBank((prevBank) => prevBank + newResource.price);
-    setMoves((prevMoves) => prevMoves - 1);
+    setBank((prevBank) => prevBank + originalPrice);
+    setMoves((prevTurn) => prevTurn - 1);
   };
 
   return (
@@ -73,7 +75,7 @@ const GameScreen: React.FC<{
             <img className="game-screen__icon" src={icon} />
             Bank: ${bank}
           </div>
-          <div className="game-screen__moves">Turn: {prevMoves}</div>
+          <div className="game-screen__moves">Turn: {prevTurn}</div>
         </div>
         {Object.entries(resources).map(([key, res]) => (
           <ResourceUI
